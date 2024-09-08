@@ -1,3 +1,4 @@
+import { env } from '@saas/env'
 import type { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
@@ -30,14 +31,14 @@ export async function authenticateWithGithub(app: FastifyInstance) {
         'https://github.com/login/oauth/access_token',
       )
 
-      githubOauthURL.searchParams.set('client_id', 'Ov23liszZlsW4ddc0L4I')
+      githubOauthURL.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
       githubOauthURL.searchParams.set(
         'client_secret',
-        '744673baa3bf6c284d65cbb4b3bc6dc36e4b5c45',
+        env.GITHUB_OAUTH_CLIENT_SECRET,
       )
       githubOauthURL.searchParams.set(
         'redirect_uri',
-        'http://localhost:3000/api/auth/callback',
+        env.GITHUB_OAUTH_CLIENT_REDIRECT_URI,
       )
       githubOauthURL.searchParams.set('code', code)
 
@@ -79,8 +80,6 @@ export async function authenticateWithGithub(app: FastifyInstance) {
           email: z.string().nullable(),
         })
         .parse(githubUserData)
-
-      console.log(githubUserData)
 
       if (!email) {
         throw new BadRequestError(
