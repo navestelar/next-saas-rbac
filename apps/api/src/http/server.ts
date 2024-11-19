@@ -11,6 +11,9 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
+import { shutdownOrganization } from '@/http/routes/orgs/shutdown-organization'
+import { updateOrganization } from '@/http/routes/orgs/update-organization'
+
 import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
@@ -71,6 +74,8 @@ app.register(createOrganization)
 app.register(getMembership)
 app.register(getOrganization)
 app.register(getOrganizations)
+app.register(updateOrganization)
+app.register(shutdownOrganization)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server running!')
