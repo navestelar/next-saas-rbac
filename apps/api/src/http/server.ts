@@ -11,12 +11,22 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
+import { acceptInvite } from '@/http/routes/invites/accept-invite'
+import { createInvite } from '@/http/routes/invites/create-invite'
+import { getInvite } from '@/http/routes/invites/get-invite'
+import { getInvites } from '@/http/routes/invites/get-invites'
+import { rejectInvite } from '@/http/routes/invites/reject-invite'
+import { revokeInvite } from '@/http/routes/invites/revoke-invite'
+import { getMembers } from '@/http/routes/members/get-members'
+import { removeMember } from '@/http/routes/members/remove-member'
+import { updateMember } from '@/http/routes/members/update-member'
 import { shutdownOrganization } from '@/http/routes/orgs/shutdown-organization'
 import { updateOrganization } from '@/http/routes/orgs/update-organization'
 import { createProject } from '@/http/routes/projects/create-project'
 import { deleteProject } from '@/http/routes/projects/delete-project'
 import { getProject } from '@/http/routes/projects/get-project'
 import { getProjects } from '@/http/routes/projects/get-projects'
+import { updateProject } from '@/http/routes/projects/update-project'
 
 import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
@@ -29,10 +39,7 @@ import { createOrganization } from './routes/orgs/create-organization'
 import { getMembership } from './routes/orgs/get-membership'
 import { getOrganization } from './routes/orgs/get-organization'
 import { getOrganizations } from './routes/orgs/get-organizations'
-import {updateProject} from "@/http/routes/projects/update-project";
-import {getMembers} from "@/http/routes/members/get-members";
-import {updateMember} from "@/http/routes/members/update-member";
-import {removeMember} from "@/http/routes/members/remove-member";
+import {getOrganizationBilling} from "@/http/routes/billing/get-organization-billing";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -94,6 +101,15 @@ app.register(updateProject)
 app.register(getMembers)
 app.register(updateMember)
 app.register(removeMember)
+
+app.register(createInvite)
+app.register(getInvite)
+app.register(getInvites)
+app.register(acceptInvite)
+app.register(rejectInvite)
+app.register(revokeInvite)
+
+app.register(getOrganizationBilling)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server running!')
