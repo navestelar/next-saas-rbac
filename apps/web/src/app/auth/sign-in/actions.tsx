@@ -1,9 +1,18 @@
 'use server'
 
 import { HTTPError } from 'ky'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 import { signInWithPassword } from '@/http/sign-in-with-password'
+
+/** Cookies
+ * In next, we can change the Cookies only in:
+ * - Server actions
+ * - Root handlers (api directory)
+ * - Middleware (next.js)
+ */
 
 const signInSchema = z.object({
   email: z
@@ -29,7 +38,10 @@ export async function signInWithEmailAndPassword(data: FormData) {
       password,
     })
 
-    console.log(token)
+    cookies().set('token', token, {
+      path: '/', // All the routes can access
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    })
   } catch (err) {
     if (err instanceof HTTPError) {
       const { message } = await err.response.json()
