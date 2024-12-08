@@ -4,6 +4,7 @@ import Image from 'next/image'
 import rocketseatIcon from '@/assets/rocketseat-icon.svg'
 import { ability } from '@/auth/auth'
 import { OrganizationSwitcher } from '@/components/organization-switcher'
+import { ProjectSwitcher } from '@/components/project-switcher'
 
 import { ProfileButton } from './profile-button'
 import { ThemeSwitcher } from './theme/theme-switcher'
@@ -24,7 +25,12 @@ export async function Header() {
         <Slash className="size-3 -rotate-[24deg] text-border" />
         <OrganizationSwitcher />
 
-        {permissions?.can('get', 'Project') && <p>Project</p>}
+        {permissions?.can('get', 'Project') && (
+          <>
+            <Slash className="size-3 -rotate-[24deg] text-border" />
+            <ProjectSwitcher />
+          </>
+        )}
       </div>
 
       <div className="flex items-center gap-4">
