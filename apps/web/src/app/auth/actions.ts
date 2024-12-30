@@ -1,7 +1,7 @@
 'use server'
 
+import { env } from '@saas/env'
 import { redirect } from 'next/navigation'
-import {env} from "@saas/env";
 
 export async function signInWithGithub() {
   const githubSignInURL = new URL('login/oauth/authorize', 'https://github.com')

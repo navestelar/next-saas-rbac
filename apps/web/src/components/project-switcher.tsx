@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 import { ChevronsUpDown, Loader2, PlusCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { use } from 'react'
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { getProjects } from '@/http/get-projects'
