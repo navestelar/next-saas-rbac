@@ -262,7 +262,7 @@ importers:
         specifier: workspace:*
         version: link:../../config/typescript-config
       '@types/node':
-        specifier: ^20.14.14
+        specifier: ^20.12.6
         version: 20.17.8
 
 packages:

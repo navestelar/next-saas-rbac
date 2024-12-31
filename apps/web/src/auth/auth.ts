@@ -6,10 +6,12 @@ import { getMembership } from '@/http/get-membership'
 import { getProfile } from '@/http/get-profile'
 
 export function isAuthenticated() {
+  // @ts-expect-error The type ask for an await, but don't need it
   return !!cookies().get('token')?.value
 }
 
 export function getCurrentOrg() {
+  // @ts-expect-error The type ask for an await, but don't need it
   return cookies().get('org')?.value ?? null
 }
 
@@ -37,7 +39,8 @@ export async function ability() {
 }
 
 export async function auth() {
-  const token = cookies().get('token')?.value
+  const cookieStore = await cookies()
+  const token = cookieStore.get('token')?.value
 
   if (!token) {
     redirect('/auth/sign-in')

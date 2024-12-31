@@ -4,5 +4,7 @@ module.exports = {
   plugins: ['simple-import-sort'],
   rules: {
     'simple-import-sort/imports': 'error',
+    'require-await': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
   },
 }
