@@ -15,8 +15,5 @@
   "prettier": "@saas/prettier",
   "eslintConfig": {
     "extends": ["./library.js"]
-  },
-  "dependencies": {
-    "@saas/eslint-config": "file:"
   }
 }

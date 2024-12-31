@@ -202,10 +202,6 @@ importers:
         version: 5.7.2
 
   config/eslint-config:
-    dependencies:
-      '@saas/eslint-config':
-        specifier: 'file:'
-        version: 'link:'
     devDependencies:
       '@rocketseat/eslint-config':
         specifier: ^2.2.2
@@ -218,10 +214,6 @@ importers:
         version: 12.1.1(eslint@8.57.1)
 
   config/prettier:
-    dependencies:
-      '@saas/prettier':
-        specifier: 'file:'
-        version: 'link:'
     devDependencies:
       prettier:
         specifier: ^3.2.5
@@ -230,11 +222,7 @@ importers:
         specifier: ^0.5.13
         version: 0.5.14(prettier@3.4.1)
 
-  config/typescript-config:
-    dependencies:
-      '@saas/tsconfig':
-        specifier: 'file:'
-        version: 'link:'
+  config/typescript-config: {}
 
   packages/auth:
     dependencies:
